@@ -7,13 +7,3 @@
  * Description: Regular Expression engine in C
  * Usage:
  */
-
-int rematch ()
-{
-  
-}
-
-int research ()
-{
-  
-}

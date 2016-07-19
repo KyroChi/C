@@ -17,40 +17,6 @@ struct matrix * nmat (int rows, int cols);
 struct matrix * smatmult (struct matrix* A, struct matrix* B);
 int ** sodaif (int *array, int n);
 
-int main (int argc, char **argv)
-{
-  struct matrix* mat = nmat(2, 2);
-  
-  free(mat);
-  mat = nmat(4, 4);
-  mat->vals[10] = 5;
-  putsmat(mat);
-  printf("\n");
-  struct matrix* mat2 = nmat(4, 4);
-  for (int i = 0; i < 16; i++) {
-    mat->vals[i] = 4;
-    mat2->vals[i] = 3;
-  }
-  struct matrix* matmul = smatmult(mat, mat2);
-  putsmat(matmul);
-
-  int testvals[16] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
-  int **testdub;
-
-  printf("\n");
-
-  testdub = sodaif(testvals, 4);
-
-  for (int i = 0; i < 4; i++) {
-    for (int j = 0; j < 4; j++) {
-      printf ("%i   ", testdub[i][j]);
-    }
-    printf("\n");
-  }
-  
-  return 0;
-}
-
 /*
  * PutsMatrix
  * 

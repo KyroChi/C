@@ -2,60 +2,156 @@
  * Trying to write a linked list
  */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "linked.h"
 
-struct ll {
-  int val;
-  struct ll * next;
-};
-
-struct dll {
-  int val;
-  struct dll * next;
-  struct dll * prev;
-};
-
-void appll (struct ll * list, int val);
-void rmlli (struct ll * list, int index);
-void printll (struct ll * list);
-
-int main (int argc, char ** argv)
+/*
+ *
+ */
+void printll (llptr list)
 {
-  struct ll * list = malloc(sizeof(struct ll));
-  list->val = 5;
-  list->next = NULL;
-  printll(list);
-  appll(list, 8);
-  appll(list, 7);
-  appll(list, 18);
-  appll(list, 37);
-  
+  while (list->next) {
+    printf("%i ", list->value);
+    list = list->next;
+  }
+  printf("%i\n", list->value);
 }
 
 /*
- * Append to linked list
+ * Push a value to the end of the linked list
+ * append value to the linked list
  */
-void appll (struct ll * list, int val)
+void llpush (llptr list, int value)
 {
-  struct ll * new_entry = malloc(sizeof(struct ll));
+  llptr new_entry = malloc(sizeof(llptr));
+  new_entry->value = value;
+  new_entry->next = NULL;
 
   while (list->next)
     list = list->next;
   
-  new_entry->val = val;
-  new_entry->next = NULL;
   list->next = new_entry;
 }
 
 /*
- * Print Linked List
+ * Pop the last value off the linked list
+ * removes the value from the ll too
  */
-void printll (struct ll * list)
+int llpop (llptr list)
 {
+  int value;
+  llptr last = list;
+  
   while(list->next) {
-    printf("%i ", list->val);
+    last = list;
     list = list->next;
-  } 
-  printf("%i\n", list->val);
+  }
+
+  last->next = NULL;
+
+  value = list->value;
+  free(list);
+  return value;
+  
+}
+ 
+/*
+ * Shift or pre-pend a value to the list
+ * use as l = llshift(l, int) returns a llptr to the modified list not void
+ */
+llptr llshift (llptr list, int value)
+{
+  llptr new_entry = malloc(sizeof(llptr));
+  
+  new_entry->value = value;
+  new_entry->next = list;
+
+  return new_entry;
+}
+
+int llunshift (llptr list)
+{
+  return 1;
+}
+
+/*
+ * Linked list to array
+ * make a linked list into an array
+ */
+int * lltoa (llptr list)
+{
+  int i, j, *array;
+  llptr org = list;
+  
+  i = 1;
+  while (list->next) {
+    list = list->next;
+    i++;
+  }
+
+  list = org;
+
+  array = malloc(i * sizeof(int));
+  
+  for (j = 0; j < i; j++) {
+    array[j] = list->value;
+    list = list->next;
+  }
+
+  return array;
+  
+}
+
+void llrm (llptr list, llptr entry)
+{
+  while (list->next != entry)
+    list = list->next;
+
+  list->next = entry->next;
+}
+
+/*
+ * Free all the links in a linked list
+ */
+void freell (llptr list)
+{
+  llptr last;
+  llptr * allptr;
+  int i, j;
+  
+  allptr = malloc(sizeof(llptr));
+  i = 1;
+    
+  while(list->next) {
+    allptr = realloc(allptr, sizeof(allptr) + sizeof(llptr));
+    allptr[i] = list;
+    list = list->next;
+    i++;
+  }
+    
+  allptr[i] = list;
+    
+  for (j = 0; j <= i; j++)
+    free(allptr[j]);
+  
+  free(allptr);
+}
+
+/*
+ * Print all the values in a doublely linked list
+ */
+void printdll (dllptr list)
+{
+  while (list->next) {
+    printf("%i ", list->value);
+    list = list->next;
+  }
+  printf("%i\n", list->value);
+}
+
+/*
+ *
+ */
+void appdll (dllptr list, int value)
+{
+
 }

@@ -2,18 +2,10 @@
 #include <time.h>
 #include <stdlib.h>
 
-#include "sorts/sorts.h"
+#include "sorts.h"
 
 void unsort (int *, int);
 void printarr (int *, int);
-
-int main (int argc, char ** argv)
-{
-  int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-  printarr(arr, 10);
-  unsort(arr, 10);
-  printarr(arr, 10);
-}
 
 void unsort (int * array, int len)
 {

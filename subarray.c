@@ -17,16 +17,6 @@ struct subarray {
 struct subarray fmcsa (int *array, int low, int mid, int high);
 struct subarray fmsa (int *array, int low, int high);
 
-int main (int argc, char **argv)
-{
-  int test[8] = { 60, 30, -6, 8, 15, 18, -8, 4 };
-  struct subarray result;
-  result = fmsa(test, 0, 7);
-  printf("L: %i\n", result.left);
-  printf("R: %i\n", result.right);
-  printf("S: %i\n", result.sum);
-}
-
 /*
  * Find Max Crossing Sub Array
  * must allocate space for 3 integers after this function returns
