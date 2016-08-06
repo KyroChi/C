@@ -2,15 +2,18 @@ CC = cc
 
 CFLAGS = -g
 
-OBJECTS = heap.c \
+OBJECTS = eds.c \
+		heap.c \
 		khelper.c \
-		linked.c \
+		linearsorts.c \
 		main.c \
 		matrix.c \
+		ordstats.c \
 		rand.c \
 		re.c \
 		sorts.c \
 		subarray.c \
+		quicksort.c \
 
 all: main
 

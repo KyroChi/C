@@ -15,7 +15,6 @@
  * found online or physical copies may be purchased online.
  */
 
-#include "heap.h"
 #include "linked.h"
 #include "sorts.h"
 
