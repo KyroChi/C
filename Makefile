@@ -1,6 +1,6 @@
 CC = cc
 
-CFLAGS = -g
+CFLAGS = -g -Wall -Werror
 
 OBJECTS = eds.c \
 		heap.c \
